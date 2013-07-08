@@ -8,6 +8,8 @@ fs.readFile('index.html', function (err, data) {
   console.log(data);
 });
 
+console.log("Testing console logging");
+
 app.get('/', function(request, response) {
   response.send('Hello World 2!');
 });
