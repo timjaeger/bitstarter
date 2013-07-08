@@ -5,7 +5,7 @@ var app = express.createServer(express.logger());
 fs = require('fs');
 fs.readFile('index.html', function (err, data) {
   if (err) throw err;
-  console.log(data);
+  console.log("data for index.html is:" + data);
 });
 
 app.get('/', function(request, response) {
