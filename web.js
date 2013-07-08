@@ -9,7 +9,7 @@ fs = require('fs');
 
 fs.readFile('index.html', function (err, data) {
   if (err) throw err;
-  buffer.write(data);
+  buffer.write(data.toString());
   console.log("data for index.html is:" + data);
 });
 
