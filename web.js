@@ -3,12 +3,10 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 fs = require('fs');
-fs.readFile('index.html', function (err, data) {
+fs.readFileSync('index.html', function (err, data) {
   if (err) throw err;
   console.log(data);
 });
-
-alert("Testing console logging");
 
 app.get('/', function(request, response) {
   response.send('Hello World 2!');
