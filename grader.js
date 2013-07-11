@@ -59,22 +59,30 @@ var checkHtmlFile = function(htmlfile, checksfile) {
     return out;
 };
 
+var checkURL = function(URL_DEFAULT) {
+   rest.get(URL_DEFAULT).on('complete', function(result) {
+        if (result instanceof Error) {
+        sys.puts('Error: ' + result.message);
+        this.retry(5000); // try again after 5 sec
+        } else {
+        sys.puts(result);
+	var fs = require('fs');
+	fs.writeFile("result.json", result, function(err) {
+    if(err) {
+        console.log(err);
+    } else {
+        console.log("The file was saved!");
+    }
+}); 
+         }
+    });
+}
+
 var clone = function(fn) {
     // Workaround for commander.js issue.
     // http://stackoverflow.com/a/6772648
     return fn.bind({});
 };
-
-var checkURL = function(URL_DEFAULT) {
-   rest.get(URL_DEFAULT).on('complete', function(result) {
-  	if (result instanceof Error) {
-    	sys.puts('Error: ' + result.message);
-    	this.retry(5000); // try again after 5 sec
-  	} else {
-    	sys.puts(result);
- 	 }
-    });
-}
 
 if(require.main == module) {
     program
